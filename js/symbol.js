@@ -50,12 +50,9 @@
 
   // ================================================================
 
-  let getSymbolResult = function(first, second) {
+  let getSymbolResult = function(first, second, hour) {
     let firstValue = ((first - 1) % 8) + 1
     let secondValue = ((second - 1) % 8) + 1
-    let date = new Date()
-    let hour = date.getHours()
-    let calculateTime = `計算時間:${date.getHours()}點${date.getMinutes()}分`
     let changeSymbolIndex = getChangeSymbolIndex(first, second, hour)
     console.log(first, second, hour, changeSymbolIndex)
 
@@ -76,7 +73,6 @@
     )
     let fourValue = getChangeSymbol(oneValue, changeSymbolIndex)
     return {
-      calculateTime,
       value: [
         firstValue,
         secondValue,
@@ -122,9 +118,11 @@
           alert('請輸入正數')
           return
         }
-        let result = getSymbolResult(this.first, this.second)
+        let date = new Date()
+        let hour = date.getHours()
+        let result = getSymbolResult(this.first, this.second, hour)
         if (result) {
-          this.useTime = result.calculateTime
+          this.useTime = `計算時間:${date.getHours()}點${date.getMinutes()}分`
           this.symbols = result.value
         } else {
           alert('計算失敗，請重新計算')
