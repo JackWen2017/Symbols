@@ -1,0 +1,38 @@
+.title {
+  font-size: 40px;
+  text-align: center;
+}
+.box {
+  max-width: 700px;
+  border: 3px black solid;
+  margin: auto;
+  padding: 10px;
+  background: #ebf1de;
+}
+.head {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.inputSpace {
+  display: flex;
+  flex-direction: column;
+}
+.bodyPic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px black solid;
+}
+.bodyResult {
+  color: red;
+  writing-mode: vertical-lr;
+}
