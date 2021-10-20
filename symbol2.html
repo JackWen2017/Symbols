@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Symbols</title>
+    <link href="./css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="title">梅花易數(動態計算)</h1>
+    <div id="app" class="box">
+      <div class="inputArea">
+        <div class="inputSpace">
+          <input type="number" maxlength="4" min="0" v-model.trim.number.lazy="first" />
+          <input type="number" maxlength="4" min="0" v-model.trim.number.lazy="second" />
+          <p>{{useTime}}</p>
+        </div>
+        <div class="symbolPic">
+          <img :src="imageSrc(firstValue)" />
+          <img :src="imageSrc(secondValue)" />
+        </div>
+      </div>
+      <div class="resultArea">
+        <div class="symbolPic">
+          <img :src="imageSrc(baseValue)" />
+          <p>{{getWord(baseValue)}}</p>
+        </div>
+      </div>
+      <div class="resultArea">
+        <div v-for="(symbol,index) in symbols" class="symbolPic">
+          <img :src="imageSrc(symbol)" />
+          <p>{{getWord(symbol)}}</p>
+          <h2 class="bodyResult">{{elementsResult(symbol)}}</h1>
+        </div>
+      </div>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./js/symbol.js"></script>
+    <script src="./js/symbolVue2.js"></script>
+  </body>
+</html>
