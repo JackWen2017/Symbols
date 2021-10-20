@@ -5,54 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Symbols</title>
-    <link href="./css/style.css" rel="stylesheet"/>
+    <link href="./css/style.css" rel="stylesheet" />
   </head>
   <body>
     <h1 class="title">梅花易數</h1>
     <div id="app" class="box">
-      <div class="head">
+      <div class="inputArea">
         <div class="inputSpace">
-          <input type="number" maxlength="4" min=0 v-model="first" />
-          <input type="number" maxlength="4" min=0 v-model="second" />
+          <input type="number" maxlength="4" min="0" v-model="first" />
+          <input type="number" maxlength="4" min="0" v-model="second" />
           <input type="button" value="計算" @click="calculation" />
           <p>{{useTime}}</p>
         </div>
-        <div class="bodyPic">
-          <img :src="imageSrc(0)" />
-          <img :src="imageSrc(1)" />
+        <div class="symbolPic">
+          <img :src="imageSrc(firstValue)" />
+          <img :src="imageSrc(secondValue)" />
         </div>
       </div>
-      <div class="body">
-        <div class="bodyPic">
-          <img :src="imageSrc(2)" />
-          <p>{{getWord(2)}}</p>
+      <div class="resultArea">
+        <div class="symbolPic">
+          <img :src="imageSrc(baseValue)" />
+          <p>{{getWord(baseValue)}}</p>
         </div>
       </div>
-      <div class="body">
-        <div class="bodyPic">
-          <img :src="imageSrc(3)" />
-          <p>{{getWord(3)}}</p>
-          <h2 class="bodyResult">{{elementsResult(3)}}</h1>
-        </div>
-        <div class="bodyPic">
-          <img :src="imageSrc(4)" />
-          <p>{{getWord(4)}}</p>
-          <h2 class="bodyResult">{{elementsResult(4)}}</h1>
-        </div>
-        <div class="bodyPic">
-          <img :src="imageSrc(5)" />
-          <p>{{getWord(5)}}</p>
-          <h2 class="bodyResult">{{elementsResult(5)}}</h1>
-        </div>
-        <div class="bodyPic">
-          <img :src="imageSrc(6)" />
-          <p>{{getWord(6)}}</p>
-          <h2 class="bodyResult">{{elementsResult(6)}}</h1>
+      <div class="resultArea">
+        <div v-for="(symbol,index) in symbols" class="symbolPic">
+          <img :src="imageSrc(symbol)" />
+          <p>{{getWord(symbol)}}</p>
+          <h2 class="bodyResult">{{elementsResult(symbol)}}</h1>
         </div>
       </div>
     </div>
     <!--script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script-->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="./js/symbol.js"></script>
+    <script src="./js/symbolVue.js"></script>
   </body>
 </html>

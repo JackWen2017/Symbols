@@ -9,39 +9,38 @@
   padding: 10px;
   background: #ebf1de;
 }
-.head {
+.inputArea {
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-.body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 10px;
-}
-.inputSpace {
-  display: flex;
-  flex-direction: column;
-}
-.bodyPic {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px black solid;
-}
-.bodyResult {
-  color: red;
-  writing-mode: vertical-lr;
 }
 input {
   padding: 5px;
   margin: 3px;
   border-radius: 5px;
 }
-
 input[type='button'] {
   background: #bbffff;
+}
+.inputSpace {
+  display: flex;
+  flex-direction: column;
+}
+.symbolPic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px black solid;
+}
+.resultArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.bodyResult {
+  color: red;
+  writing-mode: vertical-lr;
 }
