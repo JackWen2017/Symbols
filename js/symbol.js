@@ -24,7 +24,7 @@ const calculateSymbolNumber = function(top, med, bottom) {
 
 // 計算變換的位置
 const getChangeSymbolIndex = function(no1, no2, hour) {
-  return (parseInt(no1) + parseInt(no2) + Math.floor(((hour + 1) % 24) / 2)) % 6
+  return (no1 + no2 + Math.floor(((hour + 1) % 24) / 2)) % 6
 }
 
 // 進行爻變 1.拆解 2.變化 3.組合

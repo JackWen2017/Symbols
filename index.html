@@ -12,8 +12,8 @@
     <div id="app" class="box">
       <div class="inputArea">
         <div class="inputSpace">
-          <input type="number" maxlength="4" min="0" v-model="first" />
-          <input type="number" maxlength="4" min="0" v-model="second" />
+          <input type="number" maxlength="4" min="0" v-model.trim.number="first" />
+          <input type="number" maxlength="4" min="0" v-model.trim.number="second" />
           <input type="button" value="計算" @click="calculation" />
           <p>{{useTime}}</p>
         </div>
