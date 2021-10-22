@@ -27,10 +27,7 @@
       elementsResult(symbol) {
         let result = ''
         if (symbol !== 0) {
-          result = getElementsResult(
-            symbolElement[this.baseValue],
-            symbolElement[symbol]
-          )
+          result = getElementsResult(this.baseValue, symbol)
         }
         return result
       },
@@ -40,7 +37,7 @@
           return
         }
         let date = new Date()
-        let hour = date.getHours()
+        let hour = Math.floor(((date.getHours() + 1) % 24) / 2)
         let result = getSymbolResult(this.first, this.second, hour)
         if (result) {
           this.useTime = `計算時間:${date.getHours()}點${date.getMinutes()}分`

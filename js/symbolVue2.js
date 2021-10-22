@@ -3,7 +3,8 @@
     first: 0,
     second: 0,
     nowTime: new Date(),
-    timer: null
+    timer: null,
+    timeIndex: -1
   }
   // ================================================================
   new Vue({
@@ -33,14 +34,20 @@
         }
         return result
       },
+      hourIndex() {
+        return Math.floor(((this.nowTime.getHours() + 1) % 24) / 2)
+      },
       changeSymbolIndex() {
         let result = -1
         if (this.firstValue !== 0 && this.secondValue !== 0) {
-          result = getChangeSymbolIndex(
-            this.first,
-            this.second,
-            this.nowTime.getHours()
-          )
+          if (this.hourIndex !== this.timeIndex) {
+            this.timeIndex = this.hourIndex
+            result = getChangeSymbolIndex(
+              this.first,
+              this.second,
+              this.timeIndex
+            )
+          }
         }
         return result
       },
@@ -102,10 +109,7 @@
       elementsResult(symbol) {
         let result = ''
         if (symbol !== 0) {
-          result = getElementsResult(
-            symbolElement[this.baseValue],
-            symbolElement[symbol]
-          )
+          result = getElementsResult(this.baseValue, symbol)
         }
         return result
       }

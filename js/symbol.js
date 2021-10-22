@@ -1,6 +1,7 @@
 const symbolName = ['', '乾', '兌', '離', '震', '巽', '坎', '艮', '坤']
 const elements = ['木', '火', '土', '金', '水']
 const symbolElement = [-1, 3, 3, 1, 0, 0, 4, 2, 2]
+const elementResult = ['大吉', '大凶', '小吉', '小凶', '大吉']
 
 const validateInput = function(input) {
   return !/^\d+$/.test(input) || input === 0
@@ -23,8 +24,9 @@ const calculateSymbolNumber = function(top, med, bottom) {
 }
 
 // 計算變換的位置
-const getChangeSymbolIndex = function(no1, no2, hour) {
-  return (no1 + no2 + Math.floor(((hour + 1) % 24) / 2)) % 6
+const getChangeSymbolIndex = function(no1, no2, no3) {
+  console.log(no1, no2, no3)
+  return (no1 + no2 + no3) % 6
 }
 
 // 進行爻變 1.拆解 2.變化 3.組合
@@ -35,11 +37,22 @@ const getChangeSymbol = function(symbol, changeIndex) {
   return calculateSymbolNumber(symbols[0], symbols[1], symbols[2])
 }
 
+// 計算特殊變化吉凶
+const specialChangeElementsResult = function(base, comp) {
+  let result = ''
+  if (base === 7 && comp === 8) {
+    result = elementResult[1]
+  }
+  return result
+}
 // 計算吉凶
-const getElementsResult = function(baseElement, compElement) {
-  const result = ['大吉', '大凶', '小吉', '小凶', '大吉']
-  const resultIndex = (baseElement - compElement + 4) % 5
-  return result[resultIndex]
+const getElementsResult = function(base, comp) {
+  const special = specialChangeElementsResult(base, comp)
+  if (special) {
+    return special
+  }
+  const resultIndex = (symbolElement[base] - symbolElement[comp] + 4) % 5
+  return elementResult[resultIndex]
 }
 
 // ================================================================
