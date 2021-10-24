@@ -18,18 +18,23 @@
     },
     computed: {
       useTime() {
+        this.checkTimeChange
         return `計算時間:${this.nowTime.getHours()}點${this.nowTime.getMinutes()}分`
+      },
+      canChange() {
+        return this.first !== '' && this.second !== ''
+               && this.first !== 0 && this.second !== 0
       },
       firstValue() {
         let result = 0
-        if (this.first !== 0 && this.second !== 0) {
+        if (this.canChange) {
           result = this.changeInput(this.first)
         }
         return result
       },
       secondValue() {
         let result = 0
-        if (this.first !== 0 && this.second !== 0) {
+        if (this.canChange) {
           result = this.changeInput(this.second)
         }
         return result
@@ -37,17 +42,18 @@
       hourIndex() {
         return Math.floor(((this.nowTime.getHours() + 1) % 24) / 2)
       },
+      checkTimeChange() {
+        if (this.firstValue !== 0 && this.secondValue !== 0) {
+          const hourIndex = this.hourIndex
+          if (hourIndex !== this.timeIndex) {
+            this.timeIndex = hourIndex
+          }
+        }
+      },
       changeSymbolIndex() {
         let result = -1
-        if (this.firstValue !== 0 && this.secondValue !== 0) {
-          if (this.hourIndex !== this.timeIndex) {
-            this.timeIndex = this.hourIndex
-            result = getChangeSymbolIndex(
-              this.first,
-              this.second,
-              this.timeIndex
-            )
-          }
+        if (this.timeIndex > -1) {
+          result = getChangeSymbolIndex(this.first,this.second,this.timeIndex)
         }
         return result
       },
@@ -60,14 +66,14 @@
       },
       baseValue() {
         let result = 0
-        if (this.changeSymbolIndex > -1) {
+        if (this.changeSymbolIndex > -1 && this.firstValue > 0 && this.secondValue > 0) {
           result = this.checkNoChange ? this.firstValue : this.secondValue
         }
         return result
       },
       symbols() {
         let result = [0, 0, 0, 0]
-        if (this.changeSymbolIndex > -1) {
+        if (this.baseValue > 0) {
           const one = this.checkNoChange ? this.secondValue : this.firstValue
           const firstArray = disassembleSymbols(this.firstValue)
           const secondArray = disassembleSymbols(this.secondValue)
@@ -92,8 +98,9 @@
         let result = 0
         if (validateInput(inputValue)) {
           alert('請輸入正數')
+        } else {
+          result = ((inputValue - 1) % 8) + 1
         }
-        result = ((inputValue - 1) % 8) + 1
         return result
       },
       imageSrc(value) {

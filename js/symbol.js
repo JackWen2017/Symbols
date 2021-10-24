@@ -25,7 +25,6 @@ const calculateSymbolNumber = function(top, med, bottom) {
 
 // 計算變換的位置
 const getChangeSymbolIndex = function(no1, no2, no3) {
-  console.log(no1, no2, no3)
   return (no1 + no2 + no3) % 6
 }
 
