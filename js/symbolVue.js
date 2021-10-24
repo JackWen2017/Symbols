@@ -27,7 +27,12 @@
       elementsResult(symbol) {
         let result = ''
         if (symbol !== 0) {
-          result = getElementsResult(this.baseValue, symbol)
+          result = getElementsResult(
+            this.baseValue,
+            symbol,
+            this.firstValue,
+            this.secondValue
+          )
         }
         return result
       },

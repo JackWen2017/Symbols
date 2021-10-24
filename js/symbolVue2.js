@@ -22,8 +22,12 @@
         return `計算時間:${this.nowTime.getHours()}點${this.nowTime.getMinutes()}分`
       },
       canChange() {
-        return this.first !== '' && this.second !== ''
-               && this.first !== 0 && this.second !== 0
+        return (
+          this.first !== '' &&
+          this.second !== '' &&
+          this.first !== 0 &&
+          this.second !== 0
+        )
       },
       firstValue() {
         let result = 0
@@ -53,7 +57,7 @@
       changeSymbolIndex() {
         let result = -1
         if (this.timeIndex > -1) {
-          result = getChangeSymbolIndex(this.first,this.second,this.timeIndex)
+          result = getChangeSymbolIndex(this.first, this.second, this.timeIndex)
         }
         return result
       },
@@ -66,7 +70,11 @@
       },
       baseValue() {
         let result = 0
-        if (this.changeSymbolIndex > -1 && this.firstValue > 0 && this.secondValue > 0) {
+        if (
+          this.changeSymbolIndex > -1 &&
+          this.firstValue > 0 &&
+          this.secondValue > 0
+        ) {
           result = this.checkNoChange ? this.firstValue : this.secondValue
         }
         return result
@@ -116,7 +124,12 @@
       elementsResult(symbol) {
         let result = ''
         if (symbol !== 0) {
-          result = getElementsResult(this.baseValue, symbol)
+          result = getElementsResult(
+            this.baseValue,
+            symbol,
+            this.firstValue,
+            this.secondValue
+          )
         }
         return result
       }

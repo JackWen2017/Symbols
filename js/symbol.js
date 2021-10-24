@@ -36,19 +36,30 @@ const getChangeSymbol = function(symbol, changeIndex) {
   return calculateSymbolNumber(symbols[0], symbols[1], symbols[2])
 }
 
+const specialCombination = function(first, second) {
+  let special = false
+  if (first === 8 || second === 8) {
+    const total = first + second
+    special = total > 11 && total !== 13
+  }
+  return special
+}
+
 // 計算特殊變化吉凶
 const specialChangeElementsResult = function(base, comp) {
   let result = ''
-  if (base === 7 && comp === 8) {
+  if (base + comp === 15) {
     result = elementResult[1]
   }
   return result
 }
 // 計算吉凶
-const getElementsResult = function(base, comp) {
-  const special = specialChangeElementsResult(base, comp)
-  if (special) {
-    return special
+const getElementsResult = function(base, comp, first, second) {
+  if (specialCombination(first, second)) {
+    const special = specialChangeElementsResult(base, comp)
+    if (special) {
+      return special
+    }
   }
   const resultIndex = (symbolElement[base] - symbolElement[comp] + 4) % 5
   return elementResult[resultIndex]
